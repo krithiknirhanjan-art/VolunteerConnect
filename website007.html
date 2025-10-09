@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VolunteerConnect - Unite for a Better Tomorrow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #2d5016;
+            --secondary-green: #4a7c2c;
+            --light-green: #7cb342;
+            --accent-green: #c5e1a5;
+            --dark-text: #1b2e0f;
+            --white: #ffffff;
+            --light-bg: #f5f9f3;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--white);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--primary-green);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary-green) 0%, var(--light-green) 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--primary-green);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .cta-button.secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: var(--secondary-green);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .about-text {
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--accent-green) 0%, var(--light-green) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        /* Find Volunteers Section */
+        .search-container {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--accent-green);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .search-button {
+            background-color: var(--secondary-green);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-button:hover {
+            background-color: var(--primary-green);
+        }
+
+        .clubs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .club-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .club-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .club-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--secondary-green) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .club-content {
+            padding: 1.5rem;
+        }
+
+        .club-content h3 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .club-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .join-button {
+            background-color: var(--light-green);
+            color: var(--white);
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .join-button:hover {
+            background-color: var(--secondary-green);
+        }
+
+        /* Reviews Section */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .review-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--light-green);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--secondary-green) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+        }
+
+        .reviewer-info h4 {
+            color: var(--primary-green);
+            margin-bottom: 0.2rem;
+        }
+
+        .stars {
+            color: #ffa500;
+        }
+
+        .review-text {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Donation Section */
+        .donation-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .donation-impact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .impact-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--light-bg);
+            border-radius: 15px;
+        }
+
+        .impact-amount {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--secondary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .donation-tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tier-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 3px solid var(--accent-green);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .tier-card:hover {
+            border-color: var(--secondary-green);
+            transform: scale(1.05);
+        }
+
+        .tier-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-form {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 2px solid var(--accent-green);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-button {
+            background-color: var(--secondary-green);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: var(--primary-green);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .info-icon {
+            font-size: 2rem;
+            color: var(--secondary-green);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-green);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .clubs-grid,
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">🤝 VolunteerConnect</div>
+            <ul class="nav-links">
+                <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('about')">About</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('find')">Find Volunteers</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('reviews')">Reviews</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('donate')">Donate</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="hero">
+            <h1>Unite for a Better Tomorrow</h1>
+            <p>Connect with passionate volunteers and organizations making a real difference in communities worldwide</p>
+            <a href="javascript:void(0)" onclick="showPage('find')" class="cta-button">Join Now</a>
+            <a href="javascript:void(0)" onclick="showPage('about')" class="cta-button secondary">Learn More</a>
+        </div>
+
+        <section>
+            <h2>How VolunteerConnect Works</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Discover Opportunities</h3>
+                    <p>Browse hundreds of volunteering opportunities tailored to your interests and location</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Connect & Collaborate</h3>
+                    <p>Join clubs, meet like-minded individuals, and build lasting friendships through service</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌟</div>
+                    <h3>Make an Impact</h3>
+                    <p>Track your contributions and see the real difference you're making in your community</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Set Goals</h3>
+                    <p>Create personal volunteering goals and celebrate milestones with our community</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Stay Connected</h3>
+                    <p>Receive updates about events, opportunities, and community news directly</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Get Recognized</h3>
+                    <p>Earn badges and certificates for your dedication and service hours</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <section>
+            <h2>About VolunteerConnect</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Founded in 2020, VolunteerConnect was born from a simple yet powerful vision: to bridge the gap between passionate volunteers and organizations that need their help. We believe that everyone has something valuable to contribute, and that together, we can create lasting positive change.</p>
+                    <p>Our platform has connected over 50,000 volunteers with more than 2,000 organizations across 35 countries. From environmental conservation to education, healthcare to community development, we facilitate meaningful connections that transform lives and communities.</p>
+                    <p>We're more than just a platform – we're a global community united by kindness, empathy, and the desire to make the world a better place. Every connection made through VolunteerConnect represents a step toward a more compassionate, engaged, and supportive society.</p>
+                </div>
+                <div class="about-image">
+                    🌍💚
+                </div>
+            </div>
+        </section>
+
+        <section style="background-color: var(--light-bg);">
+            <h2>Our Values</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">❤️</div>
+                    <h3>Compassion</h3>
+                    <p>We lead with empathy and understanding in everything we do</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤲</div>
+                    <h3>Unity</h3>
+                    <p>We celebrate diversity and believe in the power of working together</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>Integrity</h3>
+                    <p>We maintain transparency and trust in all our relationships</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Find Volunteers/Join Clubs Page -->
+    <div id="find" class="page">
+        <section>
+            <h2>Find Your Perfect Volunteer Match</h2>
+            
+            <div class="search-container">
+                <form class="search-form" onsubmit="return false;">
+                    <div class="form-group">
+                        <label>Interest Area</label>
+                        <select>
+                            <option>All Areas</option>
+                            <option>Environment</option>
+                            <option>Education</option>
+                            <option>Healthcare</option>
+                            <option>Community Development</option>
+                            <option>Animal Welfare</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" placeholder="Enter city or zip code">
+                    </div>
+                    <button class="search-button">Search</button>
+                </form>
+            </div>
+
+            <div class="clubs-grid">
+                <div class="club-card">
+                    <div class="club-image">🌳</div>
+                    <div class="club-content">
+                        <h3>Green Earth Initiative</h3>
+                        <p class="club-meta">📍 Salem • 234 members</p>
+                        <p>Dedicated to environmental conservation through tree planting and community clean-ups</p>
+                        <button class="join-button">Join Club</button>
+                    </div>
+                </div>
+
+                <div class="club-card">
+                    <div class="club-image">📚</div>
+                    <div class="club-content">
+                        <h3>Literacy Champions</h3>
+                        <p class="club-meta">📍 Coimbature • 189 members</p>
+                        <p>Promoting literacy and education through tutoring programs for underserved communities</p>
+                        <button class="join-button">Join Club</button>
+                    </div>
+                </div>
+
+                <div class="club-card">
+                    <div class="club-image">🏥</div>
+                    <div class="club-content">
+                        <h3>Healthcare Heroes</h3>
+                        <p class="club-meta">📍 Tanojore • 312 members</p>
+                        <p>Supporting local hospitals and organizing health awareness campaigns</p>
+                        <button class="join-button">Join Club</button>
+                    </div>
+                </div>
+
+                <div class="club-card">
+                    <div class="club-image">🐾</div>
+                    <div class="club-content">
+                        <h3>Animal Rescue Network</h3>
+                        <p class="club-meta">📍 Madurai • 267 members</p>
+                        <p>Rescuing and caring for abandoned animals, organizing adoption drives</p>
+                        <button class="join-button">Join Club</button>
+                    </div>
+                </div>
+
+                <div class="club-card">
+                    <div class="club-image">🍲</div>
+                    <div class="club-content">
+                        <h3>Food for All</h3>
+                        <p class="club-meta">📍 Chennai • 198 members</p>
+                        <p>Fighting hunger by distributing meals to homeless and food-insecure families</p>
+                        <button class="join-button">Join Club</button>
+                    </div>
+                </div>
+
+                <div class="club-card">
+                    <div class="club-image">👴</div>
+                    <div class="club-content">
+                        <h3>Senior Care Community</h3>
+                        <p class="club-meta">📍 Trichy • 156 members</p>
+                        <p>Providing companionship and support to elderly community members</p>
+                        <button class="join-button">Join Club</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Reviews Page -->
+    <div id="reviews" class="page">
+        <section>
+            <h2>Volunteer Experiences</h2>
+            <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem;">Hear from our amazing community of volunteers</p>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">SJ</div>
+                        <div class="reviewer-info">
+                            <h4>Ousmane Dembélé</h4>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"VolunteerConnect changed my life! I've met incredible people and found my passion for environmental conservation. The platform makes it so easy to find opportunities that match my interests."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">MP</div>
+                        <div class="reviewer-info">
+                            <h4>Tyson</h4>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"As an organization coordinator, this platform has been invaluable. We've connected with hundreds of dedicated volunteers who truly care about making a difference in our community."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">EL</div>
+                        <div class="reviewer-info">
+                            <h4>Cristiano Ronaldo dos Santos Aveiro</h4>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"I started volunteering through VolunteerConnect during college, and now it's a regular part of my life. The tracking features help me see the real impact I'm making. Highly recommend!"</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">DK</div>
+                        <div class="reviewer-info">
+                            <h4>Kimi Antonelli </h4>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"The variety of opportunities is amazing! From healthcare to education to animal rescue, there's something for everyone. I've volunteered at 15 different events in just 6 months."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">RC</div>
+                        <div class="reviewer-info">
+                            <h4>Daren Watkins</h4>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"What I love most is the sense of community. Everyone is supportive and genuinely wants to help. VolunteerConnect isn't just a platform—it's a movement of kindness."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">JT</div>
+                        <div class="reviewer-info">
+                            <h4>Isagi Yoichi</h4>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"After retiring, I wanted to give back to my community. VolunteerConnect made it simple to find meaningful ways to contribute. I've made lifelong friends along the way!"</p>
+                </div>
+    </div>
+    <!-- Donate Page -->
+    <div id="donate" class="page">
+        <section>
+            <h2>Support Our Mission</h2>
+            <div class="donation-content">
+                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">Your generous donations help us organize volunteering events, provide resources to volunteers, and expand our outreach programs to communities in need.</p>
+
+                <div class="donation-impact">
+                    <div class="impact-card">
+                        <div class="impact-amount">$25</div>
+                        <p>Supplies for one community event</p>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-amount">$50</div>
+                        <p>Training materials for 10 volunteers</p>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-amount">$100</div>
+                        <p>Equipment for environmental projects</p>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-amount">$250</div>
+                        <p>Fund an entire outreach program</p>
+                    </div>
+                </div>
+
+                <h3 style="text-align: center; color: var(--primary-green); margin: 3rem 0 1.5rem;">Choose Your Contribution</h3>
+                
+                <div class="donation-tiers">
+                    <div class="tier-card">
+                        <div class="tier-amount">$25</div>
+                        <p>Supporter</p>
+                    </div>
+                    <div class="tier-card">
+                        <div class="tier-amount">$50</div>
+                        <p>Advocate</p>
+                    </div>
+                    <div class="tier-card">
+                        <div class="tier-amount">$100</div>
+                        <p>Champion</p>
+                    </div>
+                    <div class="tier-card">
+                        <div class="tier-amount">$250</div>
+                        <p>Hero</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="javascript:void(0)" onclick="alert('Thank you for your interest in donating! This would connect to a secure payment system.')" class="cta-button">Donate Now</a>
+                </div>
+
+                <div style="margin-top: 3rem; padding: 2rem; background-color: var(--light-bg); border-radius: 15px;">
+                    <h3 style="color: var(--primary-green); margin-bottom: 1rem;">How Your Donation Helps</h3>
+                    <ul style="line-height: 2; margin-left: 2rem;">
+                        <li><strong>Event Organization:</strong> We host monthly community volunteering events that bring together hundreds of volunteers</li>
+                        <li><strong>Volunteer Training:</strong> Comprehensive training programs ensure volunteers are prepared and effective</li>
+                        <li><strong>Resource Distribution:</strong> Providing tools, supplies, and equipment needed for various projects</li>
+                        <li><strong>Outreach Programs:</strong> Expanding our reach to underserved communities that need volunteers most</li>
+                        <li><strong>Platform Maintenance:</strong> Keeping VolunteerConnect running smoothly and accessible to all</li>
+                        <li><strong>Recognition Programs:</strong> Celebrating volunteer achievements with certificates and awards</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <section>
+            <h2>Get In Touch</h2>
+            <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem;">Have questions? We'd love to hear from you!</p>
+            
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3 style="color: var(--primary-green); margin-bottom: 1rem;">Send Us a Message</h3>
+                    <form onsubmit="return false;">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="text" placeholder="Subject">
+                        <textarea placeholder="Your Message" required></textarea>
+                        <button class="submit-button">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div>
+                            <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">Visit Us</h4>
+                            <p>Sivaganga Rd, Veerapanjan, Kalikappan, Tamil Nadu 625020</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📧</div>
+                        <div>
+                            <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">Email Us</h4>
+                            <p>krithiknirhanjan@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div>
+                            <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">Call Us</h4>
+                            <p>Main: +91 84380 38249<br><p/>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div>
+                        </div>
